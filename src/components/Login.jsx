@@ -2,9 +2,16 @@ import React, { useRef, useState } from "react";
 import Header from "./Header";
 import { useFormik } from "formik";
 import validationSchema from "../utils/validation";
+   import {  createUserWithEmailAndPassword,signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth } from "../utils/firebase.js";
+import { addUser } from "../utils/userSlice.js";
+import { useDispatch } from "react-redux";
+import { BACKGROUND_IMAGE } from "../utils/constant.js";
 
 function Login() {
+  const dispatch=useDispatch()
   const [isSignInForm, setIsSignInForm] = useState(true);
+const [firebaseError, setFirebaseError] = useState("");
 
   const formik = useFormik({
     initialValues: {
@@ -14,7 +21,67 @@ function Login() {
     },
     validationSchema: validationSchema,
     onSubmit: (val) => {
-      console.log(val);
+
+
+ if( !isSignInForm ){
+    createUserWithEmailAndPassword(auth,  val.email, val.password)
+  .then((userCredential) => {
+    const user = userCredential.user;
+
+updateProfile(user, {
+  displayName:val.fullName
+}).then(() => {
+
+  const {uid,email,displayName} =auth.currentUser
+dispatch(addUser({
+  uid: uid,
+  email: email,
+  fullName: displayName
+}));
+ 
+}).catch((error) => {
+  console.log(error)
+  console.log(error.message)
+
+
+});
+
+
+
+
+
+
+
+    setFirebaseError("")
+ 
+  })
+  .catch((error) => {
+    
+   setFirebaseError(error.message)
+
+  })
+ }
+ else{
+ 
+ 
+
+    signInWithEmailAndPassword(auth,  val.email, val.password)
+  .then((userCredential) => {
+   
+    const user = userCredential.user;
+   setFirebaseError("")
+
+   console.log(user)
+ 
+ 
+  })
+  .catch((error) => {
+  console.log(error)
+   setFirebaseError(`Error: ${error.code}`)
+  })
+
+}
+
     },
 
 
@@ -30,7 +97,7 @@ function Login() {
       <div className="absolute  h-full w-full">
         <img
           className="w-full h-full object-cover "
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/6863f6e8-d419-414d-b5b9-7ef657e67ce4/web/IN-en-20250602-TRIFECTA-perspective_27a3fdfa-126f-4148-b153-55d60b51be6a_medium.jpg"
+          src={BACKGROUND_IMAGE}
           alt=""
         />
       </div>
@@ -92,7 +159,11 @@ function Login() {
           >
             {isSignInForm ? "Sign In" : "Sign Up"}
           </button>
-
+{firebaseError && (
+  <div className="text-red-600 text-md font-bold p-2 ">
+    {firebaseError}
+  </div>
+)}
           <button
             type="button"
             onClick={handleForm}
