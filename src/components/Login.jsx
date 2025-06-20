@@ -58,11 +58,8 @@ function Login() {
           .then((userCredential) => {
             const user = userCredential.user;
             setFirebaseError("");
-
-            console.log(user);
           })
           .catch((error) => {
-            console.log(error);
             setFirebaseError(`Error: ${error.code}`);
           });
       }

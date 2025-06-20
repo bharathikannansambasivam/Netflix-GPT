@@ -6,6 +6,7 @@ import { OPTIONS } from "../utils/constant";
 
 import { addMovieTrailer } from "../utils/movieSlice";
 const useTrailer = (movieId) => {
+  const movieTrailer = useSelector((store) => store.movies.movieTrailer);
   const dispatch = useDispatch();
   const fetchVideoTrailer = async () => {
     const response = await axios.get(
@@ -21,13 +22,12 @@ const useTrailer = (movieId) => {
     const trailer = filterData.length
       ? filterData[0]
       : response.data.results[0];
-    console.log(trailer);
 
     dispatch(addMovieTrailer(trailer));
   };
 
   useEffect(() => {
-    fetchVideoTrailer();
+    if (!movieTrailer) fetchVideoTrailer();
   }, []);
 };
 

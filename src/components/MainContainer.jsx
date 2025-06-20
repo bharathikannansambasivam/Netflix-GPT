@@ -7,10 +7,13 @@ function MainContainer() {
   const movies = useSelector((store) => store.movies?.nowPlayingMovies);
 
   if (!movies) return;
-
-  const mainMovie = movies.results[2];
-  const { original_title, overview, id } = mainMovie;
+  const randomMovie = Math.floor(Math.random() * 5) + 1;
+  const mainMovie = movies.results[randomMovie]
+    ? movies.results[randomMovie]
+    : movies.results[0];
   console.log(mainMovie);
+  const { original_title, overview, id } = mainMovie;
+
   return (
     <div className="">
       <VideoTitle title={original_title} overview={overview} />

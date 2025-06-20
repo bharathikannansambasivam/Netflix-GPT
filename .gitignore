@@ -23,6 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 src/utils/firebaseConfig.js
-
 src/utils/constant.js
 
+.env

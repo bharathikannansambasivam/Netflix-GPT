@@ -1,37 +1,33 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addNowPlayingMovies } from "../utils/movieSlice";
+import { addPopularMovie } from "../utils/movieSlice";
 import { OPTIONS } from "../utils/constant";
 
-const useNowPlayingMovies = () => {
-  const dispatch = useDispatch();
+const usePopularMovies = () => {
   const [loading, setLoading] = useState(false);
-
-  const nowPlayingMovies = useSelector(
-    (store) => store.movies.nowPlayingMovies
-  );
+  const popularMovies = useSelector((store) => store.movies.popularMovies);
+  const dispatch = useDispatch();
 
   const fetchData = async () => {
+    setLoading(true);
     try {
-      setLoading(true);
-
       const response = await axios.get(
-        "https://api.themoviedb.org/3/movie/now_playing",
+        "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1",
         OPTIONS
       );
 
-      dispatch(addNowPlayingMovies(response.data));
+      dispatch(addPopularMovie(response.data));
       setLoading(false);
     } catch (error) {
       console.log(error.message);
     }
   };
   useEffect(() => {
-    if (!nowPlayingMovies) fetchData();
+    if (!popularMovies) fetchData();
   }, []);
 
   return loading;
 };
 
-export default useNowPlayingMovies;
+export default usePopularMovies;
