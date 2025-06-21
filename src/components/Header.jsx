@@ -57,6 +57,7 @@ function Header() {
 
   const handleGptSeachClick = () => {
     dispatch(toogleGptSearch());
+    setToggle(false);
   };
   return (
     <div
@@ -65,11 +66,8 @@ function Header() {
     >
       <img className=" w-44" src={LOGO} alt="Logo" />
 
-      <div className="block sm:hidden w-full">
-        <button
-          onClick={handleMenu}
-          className="border h-full w-full justify-end pr-8  grid items-center "
-        >
+      <div onClick={handleMenu} className="block sm:hidden w-full">
+        <button className="border h-full w-full justify-end pr-8  grid items-center ">
           <img className="w-10 " src={menu} alt="" />
         </button>
       </div>

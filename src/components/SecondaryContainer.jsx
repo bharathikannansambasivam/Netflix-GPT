@@ -8,7 +8,7 @@ function SecondaryContainer() {
   const isLoading = usePopularMovies();
   return (
     movies && (
-      <div className="bg-black ">
+      <div className="bg-black  ">
         <div className="-mt-32 relative ">
           <MovieList
             title="Now Playing"

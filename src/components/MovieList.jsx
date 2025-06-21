@@ -3,9 +3,10 @@ import MovieCard from "./MovieCard";
 import { useNavigate } from "react-router-dom";
 
 function MovieList({ title, movies }) {
+  const moviePoster = movies.filter((movie) => movie?.poster_path);
   return (
     <div className="">
-      {movies && (
+      {moviePoster && (
         <div>
           <h1 className="font-bold text-3xl py-5 ml-6 text-white">{title}</h1>
           <div className="flex">
