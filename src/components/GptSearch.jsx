@@ -83,12 +83,17 @@ Given the input: "${userInput}"
     }
   };
 
+  const handleEnter = (e) => {
+    if (e.key === "Enter") {
+      handlePrompt();
+    }
+  };
   return (
     <>
       {loading && (
         <div className="absolute z-100 bg-black opacity-80 inset-0 flex items-center justify-center  ">
           <div className="text-white text-lg">
-            <span class="loader"></span>
+            <span className="loader"></span>
           </div>
         </div>
       )}
@@ -105,6 +110,7 @@ Given the input: "${userInput}"
               className="w-full cursor-pointer sm:w-[40vw] px-4 py-2 text-white rounded-lg bg-transparent border border-white"
               type="text"
               ref={prompt}
+              onKeyDown={handleEnter}
               placeholder="Enter your thoughts..."
             />
             <AiOutlineSearch

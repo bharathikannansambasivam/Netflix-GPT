@@ -17,7 +17,7 @@ const useTopRatedMovies = () => {
 
       dispatch(addTopRatedMovies(response.data));
     } catch (error) {
-      console.log(error.message);
+      setLoading(false);
     }
   };
   useEffect(() => {

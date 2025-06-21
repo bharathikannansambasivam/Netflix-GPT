@@ -17,7 +17,7 @@ const useUpcomingMovies = () => {
 
       dispatch(addUpcomingMovies(response.data));
     } catch (error) {
-      console.log(error.message);
+      alert(error);
     }
   };
   useEffect(() => {
