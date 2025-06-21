@@ -3,7 +3,9 @@ import MovieCard from "./MovieCard";
 import { useNavigate } from "react-router-dom";
 
 function MovieList({ title, movies }) {
-  const moviePoster = movies.filter((movie) => movie?.poster_path);
+  const moviePoster = movies?.filter((movie) => movie?.poster_path);
+  if (!moviePoster || moviePoster.length === 0) return null;
+
   return (
     <div className="">
       {moviePoster && (
@@ -11,7 +13,7 @@ function MovieList({ title, movies }) {
           <h1 className="font-bold text-3xl py-5 ml-6 text-white">{title}</h1>
           <div className="flex">
             <div className="flex scrollbar-hidden overflow-x-scroll gap-5">
-              {movies?.map((movie) => (
+              {moviePoster?.map((movie) => (
                 <MovieCard
                   key={movie.id}
                   id={movie.id}
