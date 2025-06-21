@@ -104,10 +104,10 @@ Given the input: "${userInput}"
       >
         <div className="absolute inset-0 bg-black opacity-60"></div>
 
-        <div className="relative flex justify-center items-center py-16 px-4">
-          <div className="flex   w-full max-w-[90%] sm:max-w-[50%] mx-auto mt-10 bg-black sm:p-4 p-2 gap-4 rounded-lg border border-white">
+        <div className="relative border  flex justify-center items-center py-16 px-4">
+          <div className="flex   w-full max-w-[90%] sm:max-w-[60%] mx-auto mt-10 bg-black sm:p-4 p-2 gap-4 rounded-lg border border-white">
             <input
-              className="w-full cursor-pointer sm:w-[40vw] px-4 py-2 text-white rounded-lg bg-transparent border border-white"
+              className="w-full cursor-pointer sm:max-w-[55vw] px-4 py-2 text-white rounded-lg bg-transparent border border-white"
               type="text"
               ref={prompt}
               onKeyDown={handleEnter}

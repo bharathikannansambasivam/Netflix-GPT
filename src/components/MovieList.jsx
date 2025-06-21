@@ -7,10 +7,10 @@ function MovieList({ title, movies }) {
   if (!moviePoster || moviePoster.length === 0) return null;
 
   return (
-    <div className="">
+    <div className=" ">
       {moviePoster && (
         <div>
-          <h1 className="font-bold text-3xl py-5 ml-6 text-white">{title}</h1>
+          <h1 className="  font-bold text-3xl py-5  text-white">{title}</h1>
           <div className="flex">
             <div className="flex scrollbar-hidden overflow-x-scroll gap-5">
               {moviePoster?.map((movie) => (
