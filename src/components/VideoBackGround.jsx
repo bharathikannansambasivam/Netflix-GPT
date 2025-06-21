@@ -7,12 +7,11 @@ function VideoBackGround({ movieId }) {
 
   if (!trailerVideo || !trailerVideo.key) return null;
   return (
-    <div className="absolute h-screen w-screen overflow-hidden -z-10">
+    <div className="relative w-full h-[70vh] sm:h-[50vh] pb-[56.25%] -z-10">
       <iframe
-        className=" h-screen  aspect-video "
+        className="absolute top-0 left-0 w-full h-full"
         src={`https://www.youtube.com/embed/${trailerVideo.key}?autoplay=1&mute=1&controls=0&loop=1&playlist=${trailerVideo.key}`}
         allow="autoplay; fullscreen"
-        frameBorder="0"
       />
     </div>
   );
