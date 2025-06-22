@@ -1,5 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
-import { BACKGROUND_IMAGE, OPEN_ROUTER_KEY, OPTIONS } from "../utils/constant";
+import {
+  BACKGROUND_IMAGE,
+  MOVIE_SUGGESTION_PROMPT,
+  OPEN_ROUTER_KEY,
+  OPTIONS,
+} from "../utils/constant";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { addMovieResults } from "../utils/gptSlice";
@@ -12,14 +17,16 @@ function GptSearch() {
   const [loading, setLoading] = useState(false);
 
   const searchMovieTMDB = async (movie) => {
-    const data = await axios.get(
-      "https://api.themoviedb.org/3/search/movie?query=" +
-        movie +
-        "&include_adult=false&language=en-US&page=1",
-      OPTIONS
-    );
+    try {
+      const data = await axios.get(
+        "https://api.themoviedb.org/3/search/movie?query=" +
+          movie +
+          "&include_adult=false&language=en-US&page=1",
+        OPTIONS
+      );
 
-    return data.data.results;
+      return data.data.results;
+    } catch (error) {}
   };
 
   const handlePrompt = async () => {
@@ -28,20 +35,7 @@ function GptSearch() {
 
     setLoading(true);
     console.log(loading);
-    const promptText = `Your task is to strictly return movie titles only.
-
-Given the input: "${userInput}"
-
-- If it's asking for one specific movie, return just the movie title like: Doctor
-- If it's a general query (e.g. actor, theme, genre), return exactly 5 movie titles, comma-separated like: Movie1, Movie2, Movie3, Movie4, Movie5
-
-❌ Do NOT include:
-- Any explanation
-- Quotes
-- Numbering
-- Extra text
-
-✅ Only return the titles as plain text.`;
+    const promptText = MOVIE_SUGGESTION_PROMPT(userInput);
 
     try {
       const response = await axios.post(
@@ -111,7 +105,7 @@ Given the input: "${userInput}"
               type="text"
               ref={prompt}
               onKeyDown={handleEnter}
-              placeholder="Enter your thoughts..."
+              placeholder="Search movies…"
             />
             <AiOutlineSearch
               onClick={handlePrompt}
