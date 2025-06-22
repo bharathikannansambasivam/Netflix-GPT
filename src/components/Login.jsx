@@ -14,7 +14,7 @@ import { BACKGROUND_IMAGE } from "../utils/constant.js";
 
 function Login() {
   const dispatch = useDispatch();
-  const [isSignInForm, setIsSignInForm] = useState(true);
+  const [isSignInForm, setIsSignInForm] = useState(false);
   const [firebaseError, setFirebaseError] = useState("");
 
   const formik = useFormik({
