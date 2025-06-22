@@ -3,9 +3,9 @@ import { auth } from "../utils/firebaseConfig";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useRef, useState } from "react";
-import { addUser, removeUser } from "../utils/userSlice";
+import { addUser, removeUser } from "../slices/userSlice";
 import { LOGO, USER_AVATAR } from "../utils/constant";
-import { toogleGptSearch } from "../utils/gptSlice";
+import { toogleGptSearch } from "../slices/gptSlice";
 import menu from "../assets/menu.svg";
 
 function Header() {

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addPopularMovie } from "../utils/movieSlice";
+import { addPopularMovie } from "../slices/movieSlice";
 import { OPTIONS } from "../utils/constant";
 
 const usePopularMovies = () => {

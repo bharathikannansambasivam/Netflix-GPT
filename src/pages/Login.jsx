@@ -1,14 +1,14 @@
 import React, { useRef, useState } from "react";
-import Header from "./Header";
+import Header from "../layout/Header.jsx";
 import { useFormik } from "formik";
-import validationSchema from "../utils/validation";
+import validationSchema from "../utils/validation.js";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebaseConfig.js";
-import { addUser } from "../utils/userSlice.js";
+import { addUser } from "../slices/userSlice.js";
 import { useDispatch } from "react-redux";
 import { BACKGROUND_IMAGE } from "../utils/constant.js";
 

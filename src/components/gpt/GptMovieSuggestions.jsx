@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import MovieList from "./MovieList";
+import MovieList from "../MovieList";
 
 function GptMovieSuggestions() {
   const { movieNames, movieResults } = useSelector((store) => store.gpt);
