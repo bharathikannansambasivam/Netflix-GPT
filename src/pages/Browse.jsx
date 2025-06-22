@@ -1,13 +1,12 @@
-import Header from "./Header";
-
-import useNowPlayingMovies from "../hooks/useNowPlayingMovies";
-import MainContainer from "./MainContainer";
-import SecondaryContainer from "./SecondaryContainer";
 import usePopularMovies from "../hooks/usePopularMovies";
 import useUpcomingMovies from "../hooks/useUpcomingMovies";
 import useTopRatedMovies from "../hooks/useTopRatedMovies";
 import { useSelector } from "react-redux";
-import AiInterface from "./AiInterface";
+import Header from "../layout/Header";
+import useNowPlayingMovies from "../hooks/useNowPlayingMovies";
+import MainContainer from "../layout/MainContainer";
+import SecondaryContainer from "../layout/SecondaryContainer";
+import GptSearch from "../components/gpt/GptSearch";
 
 function Browse() {
   useNowPlayingMovies();
@@ -21,7 +20,7 @@ function Browse() {
       <Header />
 
       {showGptSearch ? (
-        <AiInterface />
+        <GptSearch />
       ) : (
         <>
           {" "}

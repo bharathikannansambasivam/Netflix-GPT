@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import Login from "./components/Login";
-import Browse from "./components/Browse";
-import MovieDetails from "./components/MovieDetails";
+import Login from "./pages/Login";
+import Browse from "./pages/Browse";
+import MovieDetails from "./pages/MovieDetails";
 
 function App() {
   return (

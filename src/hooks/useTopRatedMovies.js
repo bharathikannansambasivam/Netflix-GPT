@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addTopRatedMovies } from "../utils/movieSlice";
+import { addTopRatedMovies } from "../slices/movieSlice";
 import { OPTIONS } from "../utils/constant";
 
 const useTopRatedMovies = () => {

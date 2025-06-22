@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addNowPlayingMovies } from "../utils/movieSlice";
+import { addNowPlayingMovies } from "../slices/movieSlice";
 import { OPTIONS } from "../utils/constant";
 
 const useNowPlayingMovies = () => {

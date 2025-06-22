@@ -4,10 +4,10 @@ import {
   MOVIE_SUGGESTION_PROMPT,
   OPEN_ROUTER_KEY,
   OPTIONS,
-} from "../utils/constant";
+} from "../../utils/constant";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { addMovieResults } from "../utils/gptSlice";
+import { addMovieResults } from "../../slices/gptSlice";
 import GptMovieSuggestions from "./GptMovieSuggestions";
 import { AiOutlineSearch } from "react-icons/ai";
 
