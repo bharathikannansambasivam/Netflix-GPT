@@ -5,6 +5,7 @@ import {
   OPEN_ROUTER_KEY,
   OPTIONS,
 } from "../../utils/constant";
+
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { addMovieResults } from "../../slices/gptSlice";
@@ -36,24 +37,30 @@ function GptSearch() {
     setLoading(true);
     console.log(loading);
     const promptText = MOVIE_SUGGESTION_PROMPT(userInput);
-
+    console.log(OPEN_ROUTER_KEY);
     try {
       const response = await axios.post(
         "https://openrouter.ai/api/v1/chat/completions",
         {
-          model: "openai/gpt-3.5-turbo",
-          messages: [{ role: "user", content: promptText }],
+          model: "google/gemini-flash-1.5",
+          messages: [
+            {
+              role: "user",
+              content: promptText,
+            },
+          ],
         },
         {
           headers: {
-            "Content-Type": "application/json",
             Authorization: `Bearer ${OPEN_ROUTER_KEY}`,
+            "Content-Type": "application/json",
             "HTTP-Referer": "http://localhost:5173",
-            "X-Title": "React GPT App",
+            "X-Title": "flixGpt",
           },
         }
       );
 
+      console.log(response);
       const fetchedMovies = response.data.choices[0].message.content
         .trim()
         .split(",");
@@ -70,8 +77,7 @@ function GptSearch() {
       );
       setLoading(false);
     } catch (e) {
-      console.error("API Error:", e.message);
-      console.log(loading);
+      console.error("API Error:", e.response?.data || e.message);
 
       setLoading(false);
     }
