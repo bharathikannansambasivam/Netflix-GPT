@@ -13,7 +13,7 @@ function MainContainer() {
   const { original_title, overview, id } = mainMovie;
 
   return (
-    <div className="">
+    <div className="flex justify-center items-center">
       <VideoTitle title={original_title} overview={overview} />
       <VideoBackGround movieId={id} />
     </div>
