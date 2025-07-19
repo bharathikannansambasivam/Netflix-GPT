@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 function VideoTitle({ title, overview }) {
   const trailerVideo = useSelector((store) => store.movies.movieTrailer);
   return (
-    <div className="absolute left-10 top-[38vh] md:top-1/2 -translate-y-1/2 pb-10 text-white z-10 max-w-xl">
+    <div className="absolute left-10 top-[38vh] sm:top-1/2 md:top-2/5 -translate-y-1/2 pb-10 text-white z-10 max-w-xl">
       <h2 className="sm:text-2xl md:text-3xl text-md font-black mb-2">
         {title}
       </h2>
