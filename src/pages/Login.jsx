@@ -84,7 +84,7 @@ function Login() {
       <div className="flex opacity-75 items-center justify-center h-full  ">
         <form
           onSubmit={formik.handleSubmit}
-          className="bg-black flex flex-col gap-8 w-10/12 sm:w-1/3 p-12 backdrop-opacity-55 absolute"
+          className="bg-black flex flex-col gap-8 w-10/12  sm:w-1/2 p-12 backdrop-opacity-55 absolute"
         >
           <h1 className="font-bold text-3xl text-white">
             {isSignInForm ? "Sign In" : "Sign Up"}
