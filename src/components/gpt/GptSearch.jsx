@@ -37,12 +37,11 @@ function GptSearch() {
     setLoading(true);
     console.log(loading);
     const promptText = MOVIE_SUGGESTION_PROMPT(userInput);
-    console.log(OPEN_ROUTER_KEY);
     try {
       const response = await axios.post(
         "https://openrouter.ai/api/v1/chat/completions",
         {
-          model: "mistralai/mistral-7b-instruct",
+          model: "openai/gpt-3.5-turbo",
           messages: [
             {
               role: "user",
@@ -61,13 +60,14 @@ function GptSearch() {
       );
 
       console.log(response);
+
       const fetchedMovies = response.data.choices[0].message.content
         .trim()
         .split(",");
 
       const data = fetchedMovies.map((movie) => searchMovieTMDB(movie));
+
       const tmdbResults = await Promise.all(data);
-      console.log(tmdbResults);
 
       dispatch(
         addMovieResults({
@@ -75,10 +75,16 @@ function GptSearch() {
           movieResults: tmdbResults,
         })
       );
+
       setLoading(false);
     } catch (e) {
       console.error("API Error:", e.response?.data || e.message);
+      console.log("FULL ERROR");
+      console.log(e.response);
+      console.log(e.response?.data);
+      console.log(e.message);
 
+      setLoading(false);
       setLoading(false);
     }
   };

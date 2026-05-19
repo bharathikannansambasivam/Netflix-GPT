@@ -11,13 +11,14 @@ const useTopRatedMovies = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        " https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1",
+        "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1",
         OPTIONS
       );
 
       dispatch(addTopRatedMovies(response.data));
     } catch (error) {
-      setLoading(false);
+      //   setLoading(false);
+      console.log(error);
     }
   };
   useEffect(() => {
